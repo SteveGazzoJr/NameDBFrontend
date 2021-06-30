@@ -12,9 +12,9 @@ function generateSetNameRequest(nameToSend) {
         "Content-type": "application/json;charset=UTF-8",
         "Access-Control-Allow-Headers": "*",
       },
-    })
-      .then((response) => response.json())
-      .then((json) => setNameAndId(json));
+    }).then(async (response) => {
+      response.ok ? setNameAndId(await response.json()) : clearNameAndId();
+    });
   } catch (err) {
     console.log(err);
   }
@@ -30,9 +30,9 @@ function generateGetIdByNameRequest(nameToSend) {
         "Content-type": "application/json;charset=UTF-8",
         "Access-Control-Allow-Headers": "*",
       },
-    })
-      .then((response) => response.json())
-      .then((json) => setId(json));
+    }).then(async (response) =>
+      response.ok ? setId(await response.json()) : clearId()
+    );
   } catch (err) {
     console.log(err);
   }
@@ -48,9 +48,9 @@ function generateGetNameByIdRequest(idToSend) {
         "Content-type": "application/json;charset=UTF-8",
         "Access-Control-Allow-Headers": "*",
       },
-    })
-      .then((response) => response.json())
-      .then((json) => setName(json));
+    }).then(async (response) =>
+      response.ok ? setName(await response.json()) : clearName()
+    );
   } catch (err) {
     console.log(err);
   }
